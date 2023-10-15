@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Picker</title>
+    <style>
+      .color-square {
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        margin: 5px;
+        cursor: pointer;
+      }
+      .div{
+        text-align: center;
+        background-color: rgb(189, 130, 245);
+        padding: 20px;
+      }
+      .button{
+        background-color: rgb(1, 165, 1);
+        color: white;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="div">
+      <h1>Color Picker</h1>
+      <div id="color-picker-container">
+        <div id="color-list"></div>
+      </div>
+      <script>
+        const colors = [
+          "red",
+          "lightgreen",
+          "blue",
+          "yellow",
+          "pink",
+          "lightblue",
+          "orange",
+          "purple",
+          "lightpink",
+          "green",
+          "brown",
+          "lightyellow",
+        ];
+
+        const pickColorButton = document.getElementById("pick-color-button");
+        const colorList = document.getElementById("color-list");
+
+        colors.forEach((color) => {
+          const colorSquare = document.createElement("div");
+          colorSquare.className = "color-square";
+          colorSquare.style.backgroundColor = color;
+
+          colorSquare.addEventListener("click", () => {
+            document.body.style.backgroundColor = color; // Change the background color of the entire page
+            pickColorButton.textContent = `Selected: ${color}`;
+            colorList.style.display = "none";
+          });
+
+          colorList.appendChild(colorSquare);
+        });
+
+        pickColorButton.addEventListener("click", () => {
+          if (
+            colorList.style.display === "none" ||
+            colorList.style.display === ""
+          ) {
+            colorList.style.display = "block";
+          } else {
+            colorList.style.display = "none";
+          }
+        });
+      </script>
+      <button class="button" id="pick-color-button">Pick a color</button>
+    </div>
+  </body>
+</html>
